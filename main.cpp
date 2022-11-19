@@ -14,6 +14,13 @@ void inputArray(std::string &A, int *arrayA) {
 	}		
 }
 
+void outputArray(int *matrix) {
+	int len = matrix[0];
+	for (int i = 1; i <= len; i++) {
+		std::cout << matrix[i];
+	}
+}
+
 int getMax(int &a, int &b) {
 	if (a > b)
 		return a;
@@ -36,7 +43,7 @@ void sumNumbers(int *arrayA, int *arrayB, int *arrayResult) {
 			//getNext = getNext / 10;
 			arrayResult[i + 1] += 1;
 		}
-		std::cout << arrayResult[i] << " ";
+		//std::cout << arrayResult[i] << " ";
 	}
 	
 }
@@ -55,6 +62,7 @@ int main() {
 	inputArray(A, arrayA);
 	inputArray(B, arrayB);
 	sumNumbers(arrayA, arrayB, arrayResult);
+	outputArray(arrayResult);
 	//std::cout << arrayB[5] << std::endl; //<< B
 	system("pause");
 	return 0;
