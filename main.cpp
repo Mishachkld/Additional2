@@ -5,18 +5,17 @@
 #define ARRAY_SIZE 1001
 
 
-void inputArray(std::string &A, int *arrayA) {
-	int len = arrayA[0];
-	std::cout << len << std::endl;
-	for (int i = len; i > 0; i--) {
-		arrayA[i] = A[i-1] - '0';
-		//std::cout << arrayA[i] << " ";
-	}		
+void inputArray(std::string &A, int *array) {
+	int len = array[0];
+    for (int i = 1;   i <= len ;i++) {
+        array[i] = A[len-i] - '0';
+	}
 }
+
 
 void outputArray(int *matrix) {
 	int len = matrix[0];
-	for (int i = 1; i <= len; i++) {
+	for (int i = len; i > 0; i--) {
 		std::cout << matrix[i];
 	}
 }
@@ -27,23 +26,18 @@ int getMax(int &a, int &b) {
 	return b;
 }
 
+
 void sumNumbers(int *arrayA, int *arrayB, int *arrayResult) {
 	int len = getMax(arrayA[0], arrayB[0]);
-	//std::cout << len << std::endl;
+    arrayResult[0] = len;
 	for (int i = 1; i <= len; i++) {
-		int getNext = arrayA[i] + arrayB[i];
-		if (getNext < 10)
-			arrayResult[i] += getNext;
-		else {
-			arrayResult[i] += getNext % 10;
-			if (arrayResult[i] > 10) {
-				getNext = getNext / 10;
-				arrayResult[i + 1] += 1;
-			}
-			//getNext = getNext / 10;
-			arrayResult[i + 1] += 1;
-		}
-		//std::cout << arrayResult[i] << " ";
+        int getNext;
+        arrayResult[i] += arrayA[i] + arrayB[i];
+        if (arrayResult[i] > 9){
+            getNext = arrayResult[i] / 10;
+            arrayResult[i] = arrayResult[i] % 10;
+            arrayResult[i + 1] += getNext;
+        }
 	}
 	
 }
@@ -52,18 +46,16 @@ void sumNumbers(int *arrayA, int *arrayB, int *arrayResult) {
 int main() {
 	int arrayA[ARRAY_SIZE] = { 0 };int arrayB[ARRAY_SIZE] = { 0 };
 	int arrayResult[ARRAY_SIZE] = { 0 };
-	std::ifstream file("input.txt"); //, std::ios::in
+	std::ifstream file(R"(D:\C++Project\Additional2\input.txt)"); //, std::ios::in
 	std::string A; std::string B;
 	file >> A >> B;
-	std::cout << A << std::endl << B << std::endl; //
 	file.close();
 	arrayA[0] = A.length();
 	arrayB[0] = B.length();
 	inputArray(A, arrayA);
 	inputArray(B, arrayB);
 	sumNumbers(arrayA, arrayB, arrayResult);
-	outputArray(arrayResult);
-	//std::cout << arrayB[5] << std::endl; //<< B
-	system("pause");
+    outputArray(arrayResult);
+
 	return 0;
 }
