@@ -39,7 +39,7 @@ int main() {
 void multiplyNumbers(int *arrayA, int *arrayB, int *arrayResult){
     int lenA = arrayA[0];
     int lenB = arrayB[0];
-    arrayResult[0] =  arrayB[0] + arrayB[0];
+    arrayResult[0] =  arrayB[0] + arrayA[0];
     for (int i = 1; i <= lenB; i++){
         for (int j = 1; j <= lenA; j++){
             arrayResult[j + i - 1] += arrayB[i] * arrayA[j]  ;
